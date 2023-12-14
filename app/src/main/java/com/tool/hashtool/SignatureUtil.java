@@ -14,25 +14,6 @@ import java.security.NoSuchAlgorithmException;
 
 public class SignatureUtil {
     private static final String TAG = "SignatureUtil";
-
-    public static boolean isSignatureValid(Context context, String expectedPackageName, String expectedSignature) {
-        try {
-            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(expectedPackageName, PackageManager.GET_SIGNATURES);
-            Signature[] signatures = packageInfo.signatures;
-            String currentSignature = getSignatureInfo256(signatures);
-            String currentSignature1 = getSignatureInfo1(signatures);
-            Log.e(TAG, "APK hash 256: " + currentSignature);
-            Log.e(TAG, "APK hash 1: " + currentSignature1);
-            if (convertFormattedHashToHex(expectedSignature).equals(currentSignature)) {
-                return true;
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.e(TAG, "Package not found: " + expectedPackageName);
-        }
-
-        return false;
-    }
-
     public static String getSignatureInfo256(Signature[] signatures) {
         StringBuilder sb = new StringBuilder();
         try {
