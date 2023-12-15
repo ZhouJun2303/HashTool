@@ -14,7 +14,9 @@ import java.security.NoSuchAlgorithmException;
 
 public class SignatureUtil {
     private static final String TAG = "SignatureUtil";
+
     public static String getSignatureInfo256(Signature[] signatures) {
+        if (null == signatures) return "Null";
         StringBuilder sb = new StringBuilder();
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -31,6 +33,7 @@ public class SignatureUtil {
     }
 
     public static String getSignatureInfo1(Signature[] signatures) {
+        if (null == signatures) return "Null";
         StringBuilder sb = new StringBuilder();
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-1");

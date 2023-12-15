@@ -38,6 +38,11 @@ public class HashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hash);
 
+        boolean isRoot = CheckRoot.isDeviceRooted();
+        TextView rootStatusTextView = findViewById(R.id.rootStatusTextView);
+        String tempText = "设备Root状态  " + isRoot;
+        rootStatusTextView.setText(tempText);
+
         ListView listView = findViewById(R.id.listView);
 
         // 获取设备上已安装的所有APK
@@ -66,7 +71,7 @@ public class HashActivity extends Activity {
 
 //    private List<PackageInfo> getInstalledPackages() {
 //        PackageManager packageManager = getPackageManager();
-//        return packageManager.getInstalledPackages(PackageManager.GET_SIGNATURES);
+//        return packageManager.getInstalledPackages(PackageManager.GET_META_DATA);
 //    }
 
     //排除系统应用
@@ -82,7 +87,6 @@ public class HashActivity extends Activity {
                 filteredPackages.add(packageInfo);
             }
         }
-
         return filteredPackages;
     }
 
