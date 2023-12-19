@@ -1,4 +1,4 @@
-package com.tool.hashtool;
+package com.tool.hwtools;
 
 
 import android.content.Context;
@@ -14,6 +14,26 @@ import java.security.NoSuchAlgorithmException;
 
 public class SignatureUtil {
     private static final String TAG = "SignatureUtil";
+
+    public static String getSignatureInfo256(Context context, String packageName) {
+        try {
+            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+           return getSignatureInfo256(packageInfo.signatures);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getSignatureInfo1(Context context, String packageName) {
+        try {
+            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
+            return getSignatureInfo1(packageInfo.signatures);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public static String getSignatureInfo256(Signature[] signatures) {
         if (null == signatures) return "Null";
@@ -64,9 +84,7 @@ public class SignatureUtil {
             return calculateHash(apkFilePath);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchAlgorithmException e) {
+        } catch (IOException | NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
         return null;
@@ -91,7 +109,7 @@ public class SignatureUtil {
 
     public static String convertFormattedHashToHex(String formattedHash) {
         // 去除冒号
-//        formattedHash = formattedHash.replaceAll(":", "");
+        // formattedHash = formattedHash.replaceAll(":", "");
 
         // 转换为十六进制表示
         StringBuilder hexHash = new StringBuilder();

@@ -1,4 +1,4 @@
-package com.tool.hashtool;
+package com.tool.hwtools;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,7 +16,7 @@ import android.util.Log;
 
 public class CheckRoot {
     // 定义TAG常量
-    private  static String TAG = CheckRoot.class.getName();
+    private static String TAG = CheckRoot.class.getName();
 
     public static boolean isDeviceRooted() {
         if (checkDeviceDebuggable()) {
@@ -46,20 +46,20 @@ public class CheckRoot {
 
 
     // 检查判断是否存在SuperSU.apk文件，存在的话就是root
-    public  static boolean checkSuperuserApk() {
-        try{
+    private static boolean checkSuperuserApk() {
+        try {
             File file = new File("/system/app/SuperSU/SuperSU.apk");
-            if (file.exists()){
+            if (file.exists()) {
                 Log.w(TAG, "/system/app/SuperSU/SuperSU.apk exist");
-                return  true;
+                return true;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
         }
         return false;
     }
 
 
-    public static boolean checkDeviceDebuggable() {
+    private static boolean checkDeviceDebuggable() {
         String buildTags = android.os.Build.TAGS;
         if (buildTags != null && buildTags.contains("test-keys")) {
             Log.i(TAG, "buildTags=" + buildTags);
@@ -68,7 +68,7 @@ public class CheckRoot {
         return false;
     }
 
-    public static boolean checkRootPathSU() {
+    private static boolean checkRootPathSU() {
         File f = null;
         final String kSuSearchPaths[] = {"/system/bin/", "/system/xbin/", "/system/sbin/", "/sbin/", "/vendor/bin/"};
         try {
@@ -85,7 +85,7 @@ public class CheckRoot {
         return false;
     }
 
-    public static boolean checkRootWhichSU() {
+    private static boolean checkRootWhichSU() {
         String[] strCmd = new String[]{"/system/xbin/which", "su"};
         ArrayList<String> execResult = executeCommand(strCmd);
         if (execResult != null) {
@@ -97,7 +97,7 @@ public class CheckRoot {
         }
     }
 
-    public static ArrayList<String> executeCommand(String[] shellCmd) {
+    private static ArrayList<String> executeCommand(String[] shellCmd) {
         String line = null;
         ArrayList<String> fullResponse = new ArrayList<String>();
         Process localProcess = null;
@@ -121,7 +121,7 @@ public class CheckRoot {
         return fullResponse;
     }
 
-    public static synchronized boolean checkGetRootAuth() {
+    private static synchronized boolean checkGetRootAuth() {
         Process process = null;
         DataOutputStream os = null;
         try {
@@ -153,7 +153,7 @@ public class CheckRoot {
         }
     }
 
-    public static synchronized boolean checkBusybox() {
+    private static synchronized boolean checkBusybox() {
         try {
             Log.i(TAG, "to exec busybox df");
             String[] strCmd = new String[]{"busybox", "df"};
@@ -172,7 +172,7 @@ public class CheckRoot {
         }
     }
 
-    public static synchronized boolean checkAccessRootData() {
+    private static synchronized boolean checkAccessRootData() {
         try {
             Log.i(TAG, "to write /data");
             String fileContent = "test_ok";
@@ -199,7 +199,7 @@ public class CheckRoot {
     }
 
     //写文件
-    public static Boolean writeFile(String fileName, String message) {
+    private static Boolean writeFile(String fileName, String message) {
         try {
             FileOutputStream fout = new FileOutputStream(fileName);
             byte[] bytes = message.getBytes();
@@ -213,7 +213,7 @@ public class CheckRoot {
     }
 
     //读文件
-    public static String readFile(String fileName) {
+    private static String readFile(String fileName) {
         File file = new File(fileName);
         try {
             FileInputStream fis = new FileInputStream(file);

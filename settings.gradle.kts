@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "HashTool"
 include(":app")
- 
+include(":hwTools")

@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -15,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,6 +23,9 @@ import android.app.AlertDialog;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.tool.hwtools.CheckRoot;
+import com.tool.hwtools.SignatureUtil;
 
 import java.util.ArrayList;
 import java.util.List;
