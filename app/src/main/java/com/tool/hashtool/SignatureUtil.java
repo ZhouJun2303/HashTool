@@ -91,7 +91,7 @@ public class SignatureUtil {
 
     public static String convertFormattedHashToHex(String formattedHash) {
         // 去除冒号
-        formattedHash = formattedHash.replaceAll(":", "");
+//        formattedHash = formattedHash.replaceAll(":", "");
 
         // 转换为十六进制表示
         StringBuilder hexHash = new StringBuilder();
