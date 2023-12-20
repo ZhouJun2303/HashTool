@@ -72,8 +72,10 @@ public class SignatureUtil {
     private static String bytesToHex(byte[] bytes) {
         StringBuilder sb = new StringBuilder();
         for (byte b : bytes) {
-            sb.append(String.format("%02x", b));
+            sb.append(String.format("%02x:", b));
         }
+        // 删除最后一个冒号
+        sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
     }
 

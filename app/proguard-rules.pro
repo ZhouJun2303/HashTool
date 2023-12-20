@@ -19,6 +19,11 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
-#-keep class !com.tool.hwtools.CheckRoot { *; }
--keep class !com.tool.hashtool.** { *; }
--dontwarn javax.lang.model.element.Modifier
+-keep class com.tool.hashtool.HashActivity { *; }
+-keep class com.tool.hwtools.HwTools {
+    *;
+}
+
+-keepnames class com.tool.hwtools.HwTools {
+    *;
+}
